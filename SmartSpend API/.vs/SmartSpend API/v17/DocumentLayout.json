@@ -1,0 +1,117 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Marco\\Desktop\\Smartspend Repo\\Smartspend api\\SmartSpend API\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C36671AD-BB28-49CB-AE1A-E3E3065790A4}|SmartSpend API\\SmartSpend API.csproj|c:\\users\\marco\\desktop\\smartspend repo\\smartspend api\\smartspend api\\smartspend api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C36671AD-BB28-49CB-AE1A-E3E3065790A4}|SmartSpend API\\SmartSpend API.csproj|solutionrelative:smartspend api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C36671AD-BB28-49CB-AE1A-E3E3065790A4}|SmartSpend API\\SmartSpend API.csproj|c:\\users\\marco\\desktop\\smartspend repo\\smartspend api\\smartspend api\\smartspend api\\userregistrationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C36671AD-BB28-49CB-AE1A-E3E3065790A4}|SmartSpend API\\SmartSpend API.csproj|solutionrelative:smartspend api\\userregistrationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C36671AD-BB28-49CB-AE1A-E3E3065790A4}|SmartSpend API\\SmartSpend API.csproj|c:\\users\\marco\\desktop\\smartspend repo\\smartspend api\\smartspend api\\smartspend api\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C36671AD-BB28-49CB-AE1A-E3E3065790A4}|SmartSpend API\\SmartSpend API.csproj|solutionrelative:smartspend api\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C36671AD-BB28-49CB-AE1A-E3E3065790A4}|SmartSpend API\\SmartSpend API.csproj|c:\\users\\marco\\desktop\\smartspend repo\\smartspend api\\smartspend api\\smartspend api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C36671AD-BB28-49CB-AE1A-E3E3065790A4}|SmartSpend API\\SmartSpend API.csproj|solutionrelative:smartspend api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C36671AD-BB28-49CB-AE1A-E3E3065790A4}|SmartSpend API\\SmartSpend API.csproj|c:\\users\\marco\\desktop\\smartspend repo\\smartspend api\\smartspend api\\smartspend api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C36671AD-BB28-49CB-AE1A-E3E3065790A4}|SmartSpend API\\SmartSpend API.csproj|solutionrelative:smartspend api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Marco\\Desktop\\Smartspend Repo\\Smartspend api\\SmartSpend API\\SmartSpend API\\Program.cs",
+              "RelativeDocumentMoniker": "SmartSpend API\\Program.cs",
+              "ToolTip": "C:\\Users\\Marco\\Desktop\\Smartspend Repo\\Smartspend api\\SmartSpend API\\SmartSpend API\\Program.cs",
+              "RelativeToolTip": "SmartSpend API\\Program.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAmwDkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-17T17:37:42.027Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserRegistrationRequest.cs",
+              "DocumentMoniker": "C:\\Users\\Marco\\Desktop\\Smartspend Repo\\Smartspend api\\SmartSpend API\\SmartSpend API\\UserRegistrationRequest.cs",
+              "RelativeDocumentMoniker": "SmartSpend API\\UserRegistrationRequest.cs",
+              "ToolTip": "C:\\Users\\Marco\\Desktop\\Smartspend Repo\\Smartspend api\\SmartSpend API\\SmartSpend API\\UserRegistrationRequest.cs",
+              "RelativeToolTip": "SmartSpend API\\UserRegistrationRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-17T17:44:34.438Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\Marco\\Desktop\\Smartspend Repo\\Smartspend api\\SmartSpend API\\SmartSpend API\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "SmartSpend API\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\Marco\\Desktop\\Smartspend Repo\\Smartspend api\\SmartSpend API\\SmartSpend API\\Controllers\\UserController.cs",
+              "RelativeToolTip": "SmartSpend API\\Controllers\\UserController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-17T17:43:46.976Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Marco\\Desktop\\Smartspend Repo\\Smartspend api\\SmartSpend API\\SmartSpend API\\UserRepository.cs",
+              "RelativeDocumentMoniker": "SmartSpend API\\UserRepository.cs",
+              "ToolTip": "C:\\Users\\Marco\\Desktop\\Smartspend Repo\\Smartspend api\\SmartSpend API\\SmartSpend API\\UserRepository.cs",
+              "RelativeToolTip": "SmartSpend API\\UserRepository.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAgwCQAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-17T17:42:50.125Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Marco\\Desktop\\Smartspend Repo\\Smartspend api\\SmartSpend API\\SmartSpend API\\appsettings.json",
+              "RelativeDocumentMoniker": "SmartSpend API\\appsettings.json",
+              "ToolTip": "C:\\Users\\Marco\\Desktop\\Smartspend Repo\\Smartspend api\\SmartSpend API\\SmartSpend API\\appsettings.json",
+              "RelativeToolTip": "SmartSpend API\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAACsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-17T17:36:06.06Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
