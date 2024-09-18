@@ -1,5 +1,5 @@
 using Microsoft.Data.SqlClient;
-using SmartSpend_API.Data;
+using SmartSpend_API.Services;
 
 namespace SmartSpend_API
 {
@@ -26,26 +26,56 @@ namespace SmartSpend_API
             // Register the UserRepository for dependency injection
             builder.Services.AddTransient<UserRepository>();
 
-            // Register the Swagger generator, defining 1 or more Swagger documents
-            builder.Services.AddSwaggerGen();  // Ensure this line is present
+            // Add CORS configuration
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+                });
+            });
+
+            // Add Authorization (optional if you're using roles or other forms of authorization)
+            builder.Services.AddAuthorization();
+
+            // Add Swagger for API documentation
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline for development
+            // Configure the HTTP request pipeline
             if (app.Environment.IsDevelopment())
             {
-                app.UseSwagger();  // Ensure this line is present
-                app.UseSwaggerUI();  // Ensure this line is present
+                app.UseDeveloperExceptionPage();
+
+                // Enable Swagger in Development environment
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "SmartSpend_API v1");
+                });
             }
             else
             {
-                // Use a custom error handler for production
+                // Handle errors in production environment
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
 
             // Enable HTTPS redirection
             app.UseHttpsRedirection();
+
+            // Add CORS to the middleware pipeline
+            app.UseCors("AllowAll");
+
+            // Enable routing and map controllers
+            app.UseRouting();
+
+            // Enable Authorization middleware (if needed)
+            app.UseAuthorization();
 
             // Map Controllers
             app.MapControllers();

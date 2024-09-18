@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using SmartSpend_API.Data;
-using SmartSpend_API.DTOs;
-using System;
+using SmartSpend_API.Services;
+using SmartSpend_API.Models;
 using System.Security.Cryptography;
-using System.Text;
 
 namespace SmartSpend_API.Controllers
 {
@@ -19,12 +17,21 @@ namespace SmartSpend_API.Controllers
             _userRepository = userRepository;
         }
 
+        // Registration endpoint
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] UserRegistrationRequest request)
+        public async Task<IActionResult> Register([FromBody] UserRegistrationModel request)
         {
+            // Check if the user already exists
+            if (await _userRepository.CheckUserExists(request.Email))
+            {
+                return BadRequest("User with this email already exists.");
+            }
+
+            // Hash the password with a salt
             var passwordHash = HashPassword(request.Password, out string salt);
 
-            var success = await _userRepository.CreateUser(request.FirstName, request.LastName, request.Email, passwordHash, salt);
+            // Create the new user
+            var success = await _userRepository.CreateUser(request.FirstName, request.LastName, request.Email, passwordHash, salt, request.PhoneNumber);
 
             if (!success)
             {
@@ -34,10 +41,21 @@ namespace SmartSpend_API.Controllers
             return Ok("User registered successfully.");
         }
 
+        // Login endpoint
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] UserLoginRequest request)
+        public async Task<IActionResult> Login([FromBody] UserLoginModel request)
         {
+            if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
+            {
+                return BadRequest("Email and password are required.");
+            }
+
             var salt = await _userRepository.GetUserSalt(request.Email);
+            if (string.IsNullOrEmpty(salt))
+            {
+                return Unauthorized("Invalid email or password.");
+            }
+
             var passwordHash = HashPasswordWithSalt(request.Password, salt);
 
             var success = await _userRepository.Login(request.Email, passwordHash);
@@ -51,6 +69,8 @@ namespace SmartSpend_API.Controllers
         }
 
 
+
+        // Hashing password with salt generation
         private string HashPassword(string password, out string salt)
         {
             // Generate a random salt
@@ -67,16 +87,15 @@ namespace SmartSpend_API.Controllers
             using (var pbkdf2 = new Rfc2898DeriveBytes(password, saltBytes, 10000))
             {
                 byte[] hash = pbkdf2.GetBytes(20); // Generate a 20-byte hash
-                                                   // Combine the salt and hash into one string for storage
                 byte[] hashBytes = new byte[36];
                 Array.Copy(saltBytes, 0, hashBytes, 0, 16);
                 Array.Copy(hash, 0, hashBytes, 16, 20);
 
-                // Return the combined salt+hash as a base64 string
                 return Convert.ToBase64String(hashBytes);
             }
         }
 
+        // Hashing password with an existing salt
         private string HashPasswordWithSalt(string password, string salt)
         {
             // Convert the base64 salt back to byte array
@@ -85,12 +104,11 @@ namespace SmartSpend_API.Controllers
             // Use PBKDF2 to hash the password with the provided salt
             using (var pbkdf2 = new Rfc2898DeriveBytes(password, saltBytes, 10000))
             {
-                byte[] hash = pbkdf2.GetBytes(20); // Generate a 20-byte hash
+                byte[] hash = pbkdf2.GetBytes(20);
                 byte[] hashBytes = new byte[36];
                 Array.Copy(saltBytes, 0, hashBytes, 0, 16);
                 Array.Copy(hash, 0, hashBytes, 16, 20);
 
-                // Return the combined salt+hash as a base64 string
                 return Convert.ToBase64String(hashBytes);
             }
         }
