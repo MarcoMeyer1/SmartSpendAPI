@@ -65,7 +65,11 @@ namespace SmartSpend_API.Controllers
                 return Unauthorized("Invalid credentials.");
             }
 
-            return Ok("Login successful.");
+            // Get user details to return the userID
+            var user = await _userRepository.GetUserByEmail(request.Email);
+
+            // Return JSON with the userID and success message
+            return Ok(new { userID = user.UserID, message = "Login successful" });
         }
 
 

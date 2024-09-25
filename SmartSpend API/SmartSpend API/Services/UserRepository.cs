@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using SmartSpend_API.Models;
 
 namespace SmartSpend_API.Services
 {
@@ -85,5 +86,35 @@ namespace SmartSpend_API.Services
                 return result > 0;
             }
         }
+
+        // Fetch user by email
+        public async Task<User> GetUserByEmail(string email)
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT UserID, FirstName, Surname, Email, PhoneNumber FROM Users WHERE Email = @Email";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Email", email);
+
+                conn.Open();
+                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                {
+                    if (reader.Read())
+                    {
+                        return new User
+                        {
+                            UserID = reader.GetInt32(0),
+                            FirstName = reader.GetString(1),
+                            LastName = reader.GetString(2),
+                            Email = reader.GetString(3),
+                            PhoneNumber = reader.IsDBNull(4) ? null : reader.GetString(4)
+                        };
+                    }
+                }
+                conn.Close();
+                return null; // Return null if the user is not found
+            }
+        }
+
     }
 }
