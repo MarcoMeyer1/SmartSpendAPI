@@ -116,5 +116,78 @@ namespace SmartSpend_API.Services
             }
         }
 
+        public async Task<bool> UpdateUser(User user)
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                string query = @"UPDATE Users 
+                                 SET FirstName = @FirstName, 
+                                     Surname = @LastName, 
+                                     PhoneNumber = @PhoneNumber
+                                 WHERE UserID = @UserID";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@UserID", user.UserID);
+                cmd.Parameters.AddWithValue("@FirstName", user.FirstName);
+                cmd.Parameters.AddWithValue("@LastName", user.LastName);
+                cmd.Parameters.AddWithValue("@PhoneNumber", user.PhoneNumber ?? (object)DBNull.Value);
+
+                conn.Open();
+                int result = await cmd.ExecuteNonQueryAsync();
+                conn.Close();
+                return result > 0;
+            }
+        }
+
+        // Delete User Account
+        public async Task<bool> DeleteUser(int userID)
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                string query = "DELETE FROM Users WHERE UserID = @UserID";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@UserID", userID);
+
+                conn.Open();
+                int result = await cmd.ExecuteNonQueryAsync();
+                conn.Close();
+                return result > 0;
+            }
+        }
+
+        // Get User Profile by ID
+        public async Task<User> GetUserByID(int userID)
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT UserID, FirstName, Surname, Email, PhoneNumber, DateRegistered FROM Users WHERE UserID = @UserID";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@UserID", userID);
+
+                conn.Open();
+                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                {
+                    if (reader.Read())
+                    {
+                        return new User
+                        {
+                            UserID = reader.GetInt32(0),
+                            FirstName = reader.GetString(1),
+                            LastName = reader.GetString(2),
+                            Email = reader.GetString(3),
+                            PhoneNumber = reader.IsDBNull(4) ? null : reader.GetString(4),
+                            DateRegistered = reader.GetDateTime(5)
+                        };
+                    }
+                }
+                conn.Close();
+                return null; // Return null if user is not found
+            }
+        }
+
+
     }
 }
+
+    
+

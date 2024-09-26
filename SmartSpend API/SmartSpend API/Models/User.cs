@@ -3,11 +3,12 @@
     public class User
     {
         public int UserID { get; set; }
-        public string FirstName { get; set; }    
-        public string LastName { get; set; }     
-        public string Email { get; set; }        
-        public string Password { get; set; }    
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
         public string PhoneNumber { get; set; } = null;  // Optional
+        public DateTime DateRegistered { get; set; }    // Assuming you store the registration date
     }
     public class UserRegistrationModel
     {

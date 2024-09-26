@@ -116,5 +116,41 @@ namespace SmartSpend_API.Controllers
                 return Convert.ToBase64String(hashBytes);
             }
         }
+
+        [HttpGet("{userID}")]
+        public async Task<IActionResult> GetUserProfile(int userID)
+        {
+            var user = await _userRepository.GetUserByID(userID);
+            if (user == null)
+            {
+                return NotFound("User not found.");
+            }
+            return Ok(user);
+        }
+
+        // Update user profile
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateUserProfile([FromBody] User user)
+        {
+            bool success = await _userRepository.UpdateUser(user);
+            if (!success)
+            {
+                return BadRequest("User update failed.");
+            }
+            return Ok("User profile updated successfully.");
+        }
+
+        // Delete user account
+        [HttpDelete("delete/{userID}")]
+        public async Task<IActionResult> DeleteUser(int userID)
+        {
+            bool success = await _userRepository.DeleteUser(userID);
+            if (!success)
+            {
+                return BadRequest("User deletion failed.");
+            }
+            return Ok("User account deleted successfully.");
+        }
     }
 }
+

@@ -26,6 +26,13 @@ namespace SmartSpend_API
             // Register the UserRepository for dependency injection
             builder.Services.AddTransient<UserRepository>();
             builder.Services.AddScoped<GoalRepository>();
+            builder.Services.AddScoped<CategoryRepository>();
+            builder.Services.AddScoped<DetailedViewRepository>();
+            builder.Services.AddScoped<ExpenseRepository>();
+            builder.Services.AddScoped<IncomeRepository>();
+            builder.Services.AddScoped<NotificationRepository>();
+            builder.Services.AddScoped<ReminderRepository>();
+            builder.Services.AddScoped<SettingsRepository>();
 
             // Add CORS configuration
             builder.Services.AddCors(options =>
