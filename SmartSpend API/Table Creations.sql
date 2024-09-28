@@ -50,10 +50,13 @@ CREATE TABLE Goals (
     CompletionDate DATETIME NULL
 );
 
--- Category Table
-CREATE TABLE Categories (
-    CategoryID INT IDENTITY(1,1) PRIMARY KEY,
-    CategoryName NVARCHAR(255) NOT NULL
+-- Category Table with ColorCode and UserID
+CREATE TABLE dbo.Categories (
+    CategoryID INT PRIMARY KEY NOT NULL,   -- Primary key for the categories
+    CategoryName NVARCHAR(255) NOT NULL,   -- Category name (e.g., Groceries, Rent)
+    ColorCode NVARCHAR(7) NOT NULL,        -- Color code for UI representation (e.g., #FFFFFF)
+    UserID INT NOT NULL,                   -- Reference to the user who created the category
+    maxBudget DECIMAL(18, 2) NOT NULL      -- Max budget for the category
 );
 
 -- Notifications Table

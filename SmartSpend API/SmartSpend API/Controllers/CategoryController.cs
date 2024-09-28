@@ -21,7 +21,6 @@ namespace SmartSpend_API.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> CreateCategory([FromBody] Category category)
         {
-            // Assume that the userID is coming in the request, or you get it from an authenticated token
             bool success = await _categoryRepository.CreateCategory(category);
             if (!success)
             {
@@ -30,6 +29,7 @@ namespace SmartSpend_API.Controllers
             return Ok("Category created successfully.");
         }
 
+        // Get categories by userID
         [HttpGet("user/{userID}")]
         public async Task<IActionResult> GetCategoriesByUserID(int userID)
         {
@@ -40,7 +40,6 @@ namespace SmartSpend_API.Controllers
             }
             return Ok(categories);
         }
-
 
         // Get all categories
         [HttpGet("all")]

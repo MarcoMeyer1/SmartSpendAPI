@@ -4,8 +4,8 @@
     {
         public int CategoryID { get; set; }
         public string CategoryName { get; set; }
-        public string ColorCode { get; set; }  // New field for color code
-
-        public int UserID { get; set; }  // Add this to associate the category with a user
+        public string ColorCode { get; set; }
+        public int UserID { get; set; }
+        public decimal MaxBudget { get; set; } 
     }
 }

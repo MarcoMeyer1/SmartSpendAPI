@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jWJP/gtbmd0=",
+  "dgSpecHash": "ReuKub4XdZM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Marco\\Desktop\\Smartspend Repo\\Smartspend api\\SmartSpendAPI\\SmartSpend API\\SmartSpend API\\SmartSpend API.csproj",
+  "projectFilePath": "C:\\Users\\Marco\\Desktop\\Smartspend\\Smartspend api\\SmartSpendAPI\\SmartSpend API\\SmartSpend API\\SmartSpend API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Marco\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Marco\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

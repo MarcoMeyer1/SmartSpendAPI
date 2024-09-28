@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SmartSpend API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cfeb1a5373e175f4f091fe88b2ef590f8acc732b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+88411f202a4619772342f1ca2b8ed2c13adfe314")]
 [assembly: System.Reflection.AssemblyProductAttribute("SmartSpend API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SmartSpend API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

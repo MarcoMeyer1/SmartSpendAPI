@@ -20,13 +20,14 @@ namespace SmartSpend_API.Services
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                string query = @"INSERT INTO Categories (CategoryName, ColorCode, UserID) 
-                         VALUES (@CategoryName, @ColorCode, @UserID)";
+                string query = @"INSERT INTO Categories (CategoryName, ColorCode, UserID, MaxBudget) 
+                         VALUES (@CategoryName, @ColorCode, @UserID, @MaxBudget)";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@CategoryName", category.CategoryName);
                 cmd.Parameters.AddWithValue("@ColorCode", category.ColorCode);
-                cmd.Parameters.AddWithValue("@UserID", category.UserID);  // Associate with the user
+                cmd.Parameters.AddWithValue("@UserID", category.UserID);
+                cmd.Parameters.AddWithValue("@MaxBudget", category.MaxBudget);  // Include maxBudget
 
                 conn.Open();
                 int result = await cmd.ExecuteNonQueryAsync();
@@ -34,6 +35,8 @@ namespace SmartSpend_API.Services
                 return result > 0;
             }
         }
+
+        // Get categories by userID
         public async Task<List<Category>> GetCategoriesByUserID(int userID)
         {
             List<Category> categories = new List<Category>();
@@ -41,7 +44,7 @@ namespace SmartSpend_API.Services
             {
                 string query = "SELECT * FROM Categories WHERE UserID = @UserID";
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@UserID", userID);  // Filter categories by userID
+                cmd.Parameters.AddWithValue("@UserID", userID);
 
                 conn.Open();
                 using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
@@ -53,7 +56,8 @@ namespace SmartSpend_API.Services
                             CategoryID = (int)reader["CategoryID"],
                             CategoryName = reader["CategoryName"].ToString(),
                             ColorCode = reader["ColorCode"].ToString(),
-                            UserID = (int)reader["UserID"]  // Include the userID
+                            UserID = (int)reader["UserID"],
+                            MaxBudget = (decimal)reader["MaxBudget"]  // Retrieve maxBudget
                         };
                         categories.Add(category);
                     }
@@ -81,7 +85,8 @@ namespace SmartSpend_API.Services
                         {
                             CategoryID = (int)reader["CategoryID"],
                             CategoryName = reader["CategoryName"].ToString(),
-                            ColorCode = reader["ColorCode"].ToString()  // Retrieve the color code
+                            ColorCode = reader["ColorCode"].ToString(),
+                            MaxBudget = (decimal)reader["MaxBudget"]  // Retrieve maxBudget
                         };
                         categories.Add(category);
                     }
@@ -97,13 +102,14 @@ namespace SmartSpend_API.Services
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 string query = @"UPDATE Categories 
-                                 SET CategoryName = @CategoryName, ColorCode = @ColorCode
+                                 SET CategoryName = @CategoryName, ColorCode = @ColorCode, MaxBudget = @MaxBudget
                                  WHERE CategoryID = @CategoryID";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@CategoryID", category.CategoryID);
                 cmd.Parameters.AddWithValue("@CategoryName", category.CategoryName);
-                cmd.Parameters.AddWithValue("@ColorCode", category.ColorCode);  // New parameter for color code
+                cmd.Parameters.AddWithValue("@ColorCode", category.ColorCode);
+                cmd.Parameters.AddWithValue("@MaxBudget", category.MaxBudget);  // Include maxBudget
 
                 conn.Open();
                 int result = await cmd.ExecuteNonQueryAsync();

@@ -21,6 +21,11 @@ namespace SmartSpend_API.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> CreateIncome([FromBody] Income income)
         {
+            if (income == null || income.Amount <= 0)
+            {
+                return BadRequest("Invalid income data.");
+            }
+
             bool success = await _incomeRepository.CreateIncome(income);
             if (!success)
             {
