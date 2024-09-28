@@ -76,5 +76,18 @@ namespace SmartSpend_API.Controllers
             }
             return Ok("Category deleted successfully.");
         }
+
+        // Get category by ID
+        [HttpGet("{categoryID}")]
+        public async Task<IActionResult> GetCategoryByID(int categoryID)
+        {
+            Category category = await _categoryRepository.GetCategoryByID(categoryID);
+            if (category == null)
+            {
+                return NotFound("Category not found.");
+            }
+            return Ok(category);
+        }
+
     }
 }

@@ -41,6 +41,18 @@ namespace SmartSpend_API.Controllers
             return Ok(expenses);
         }
 
+        // Get expenses by category ID and user ID
+        [HttpGet("category/{userID}/{categoryID}")]
+        public async Task<IActionResult> GetExpensesByCategory(int userID, int categoryID)
+        {
+            List<Expense> expenses = await _expenseRepository.GetExpensesByCategoryIDAndUserID(categoryID, userID);
+            if (expenses == null || expenses.Count == 0)
+            {
+                return NotFound("No expenses found for this category and user.");
+            }
+            return Ok(expenses);
+        }
+
         // Update an expense
         [HttpPut("update")]
         public async Task<IActionResult> UpdateExpense([FromBody] Expense expense)
@@ -63,6 +75,17 @@ namespace SmartSpend_API.Controllers
                 return BadRequest("Expense deletion failed.");
             }
             return Ok("Expense deleted successfully.");
+        }
+        // Get total expenses per category for a user
+        [HttpGet("totals/user/{userID}")]
+        public async Task<IActionResult> GetTotalExpensesPerCategoryForUser(int userID)
+        {
+            List<CategoryExpenseTotal> categoryTotals = await _expenseRepository.GetTotalExpensesPerCategoryForUser(userID);
+            if (categoryTotals == null || categoryTotals.Count == 0)
+            {
+                return NotFound("No categories or expenses found for this user.");
+            }
+            return Ok(categoryTotals);
         }
     }
 }

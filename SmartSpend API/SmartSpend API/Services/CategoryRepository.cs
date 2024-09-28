@@ -133,5 +133,36 @@ namespace SmartSpend_API.Services
                 return result > 0;
             }
         }
+
+        // Get category by ID
+        public async Task<Category> GetCategoryByID(int categoryID)
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Categories WHERE CategoryID = @CategoryID";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@CategoryID", categoryID);
+
+                conn.Open();
+                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                {
+                    if (reader.Read())
+                    {
+                        Category category = new Category
+                        {
+                            CategoryID = (int)reader["CategoryID"],
+                            CategoryName = reader["CategoryName"].ToString(),
+                            ColorCode = reader["ColorCode"].ToString(),
+                            UserID = (int)reader["UserID"],
+                            MaxBudget = (decimal)reader["MaxBudget"]
+                        };
+                        return category;
+                    }
+                }
+                conn.Close();
+            }
+            return null;
+        }
+
     }
 }

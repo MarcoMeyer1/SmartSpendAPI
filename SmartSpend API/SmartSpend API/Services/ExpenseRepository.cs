@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using SmartSpend_API.Models;
 using Microsoft.Extensions.Configuration;
+using System;
 
 namespace SmartSpend_API.Services
 {
@@ -69,6 +70,39 @@ namespace SmartSpend_API.Services
             return expenses;
         }
 
+        // Get expenses by category ID and user ID
+        public async Task<List<Expense>> GetExpensesByCategoryIDAndUserID(int categoryID, int userID)
+        {
+            List<Expense> expenses = new List<Expense>();
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Expenses WHERE CategoryID = @CategoryID AND UserID = @UserID";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@CategoryID", categoryID);
+                cmd.Parameters.AddWithValue("@UserID", userID);
+
+                conn.Open();
+                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                {
+                    while (reader.Read())
+                    {
+                        Expense expense = new Expense
+                        {
+                            ExpenseID = (int)reader["ExpenseID"],
+                            UserID = (int)reader["UserID"],
+                            ExpenseName = reader["ExpenseName"].ToString(),
+                            CategoryID = (int)reader["CategoryID"],
+                            Amount = (decimal)reader["Amount"],
+                            ExpenseDate = (DateTime)reader["ExpenseDate"]
+                        };
+                        expenses.Add(expense);
+                    }
+                }
+                conn.Close();
+            }
+            return expenses;
+        }
+
         // Update an expense
         public async Task<bool> UpdateExpense(Expense expense)
         {
@@ -107,6 +141,44 @@ namespace SmartSpend_API.Services
                 conn.Close();
                 return result > 0;
             }
+        }
+
+        // Get total expenses per category for a user
+        public async Task<List<CategoryExpenseTotal>> GetTotalExpensesPerCategoryForUser(int userID)
+        {
+            List<CategoryExpenseTotal> categoryTotals = new List<CategoryExpenseTotal>();
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                string query = @"
+                    SELECT c.CategoryID, c.CategoryName, c.ColorCode, c.MaxBudget, 
+                           ISNULL(SUM(e.Amount), 0) AS TotalSpent
+                    FROM Categories c
+                    LEFT JOIN Expenses e ON c.CategoryID = e.CategoryID AND e.UserID = @UserID
+                    WHERE c.UserID = @UserID
+                    GROUP BY c.CategoryID, c.CategoryName, c.ColorCode, c.MaxBudget";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@UserID", userID);
+
+                conn.Open();
+                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                {
+                    while (reader.Read())
+                    {
+                        CategoryExpenseTotal total = new CategoryExpenseTotal
+                        {
+                            CategoryID = (int)reader["CategoryID"],
+                            CategoryName = reader["CategoryName"].ToString(),
+                            ColorCode = reader["ColorCode"].ToString(),
+                            MaxBudget = (decimal)reader["MaxBudget"],
+                            TotalSpent = (decimal)reader["TotalSpent"]
+                        };
+                        categoryTotals.Add(total);
+                    }
+                }
+                conn.Close();
+            }
+            return categoryTotals;
         }
     }
 }
