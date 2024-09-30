@@ -15,7 +15,7 @@ namespace SmartSpend_API.Services
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        // Create a new category
+        // Creates a new category
         public async Task<bool> CreateCategory(Category category)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -36,7 +36,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Get categories by userID
+        // Gets categories by userID
         public async Task<List<Category>> GetCategoriesByUserID(int userID)
         {
             List<Category> categories = new List<Category>();
@@ -67,7 +67,7 @@ namespace SmartSpend_API.Services
             return categories;
         }
 
-        // Get all categories
+        // Gets all categories
         public async Task<List<Category>> GetAllCategories()
         {
             List<Category> categories = new List<Category>();
@@ -96,7 +96,7 @@ namespace SmartSpend_API.Services
             return categories;
         }
 
-        // Update a category
+        // Updates a category
         public async Task<bool> UpdateCategory(Category category)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -118,7 +118,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Delete a category
+        // Deletes a category
         public async Task<bool> DeleteCategory(int categoryID)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -134,7 +134,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Get category by ID
+        // Gets category by ID
         public async Task<Category> GetCategoryByID(int categoryID)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))

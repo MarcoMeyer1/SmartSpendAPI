@@ -15,7 +15,7 @@ namespace SmartSpend_API.Services
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        // Create a new user
+        // Creates a new user
         public async Task<bool> CreateUser(string firstName, string lastName, string email, string passwordHash, string passwordSalt, string phoneNumber)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -55,7 +55,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Fetch user password salt by email
+        // Fetches user password salt by email
         public async Task<string> GetUserSalt(string email)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -71,7 +71,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Fetch user by email to validate if the email exists
+        // Fetches user by email to validate if the email exists
         public async Task<bool> CheckUserExists(string email)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -87,7 +87,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Fetch user by email
+        // Fetches user by email
         public async Task<User> GetUserByEmail(string email)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -112,10 +112,11 @@ namespace SmartSpend_API.Services
                     }
                 }
                 conn.Close();
-                return null; // Return null if the user is not found
+                return null; 
             }
         }
 
+        // Updates User Details
         public async Task<bool> UpdateUser(User user)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -139,7 +140,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Delete User Account
+        // Deletes User Account
         public async Task<bool> DeleteUser(int userID)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -155,7 +156,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Get User Profile by ID
+        // Gets User Profile by ID
         public async Task<User> GetUserByID(int userID)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -181,7 +182,7 @@ namespace SmartSpend_API.Services
                     }
                 }
                 conn.Close();
-                return null; // Return null if user is not found
+                return null; 
             }
         }
 

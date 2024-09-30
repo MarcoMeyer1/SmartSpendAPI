@@ -15,7 +15,7 @@ namespace SmartSpend_API.Services
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        // Create a new income entry
+        // Creates a new income entry
         public async Task<bool> CreateIncome(Income income)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -36,7 +36,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Get income entries for a specific user
+        // Gets income entries for a specific user
         public async Task<List<Income>> GetIncomeByUserID(int userID)
         {
             List<Income> incomeList = new List<Income>();
@@ -67,7 +67,7 @@ namespace SmartSpend_API.Services
             return incomeList;
         }
 
-        // Update an income entry
+        // Updates an income entry
         public async Task<bool> UpdateIncome(Income income)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -90,7 +90,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Delete an income entry
+        // Deletes an income entry
         public async Task<bool> DeleteIncome(int incomeID)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))

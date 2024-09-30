@@ -14,7 +14,7 @@ namespace SmartSpend_API.Services
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        // Get settings for a specific user
+        // Gets settings for a specific user
         public async Task<Settings> GetSettingsByUserID(int userID)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -33,17 +33,17 @@ namespace SmartSpend_API.Services
                             SettingID = (int)reader["SettingID"],
                             UserID = (int)reader["UserID"],
                             AllowNotifications = (bool)reader["AllowNotifications"],
-                            AllowSSO = (bool)reader["AllowSSO"],  // Handling AllowSSO field
+                            AllowSSO = (bool)reader["AllowSSO"],  
                             Language = reader["Language"].ToString()
                         };
                     }
                 }
                 conn.Close();
-                return null; // If no settings are found
+                return null; 
             }
         }
 
-        // Update settings for a specific user
+        // Updates settings for a specific user
         public async Task<bool> UpdateSettings(Settings settings)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -56,7 +56,7 @@ namespace SmartSpend_API.Services
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@AllowNotifications", settings.AllowNotifications);
-                cmd.Parameters.AddWithValue("@AllowSSO", settings.AllowSSO);  // Updating AllowSSO
+                cmd.Parameters.AddWithValue("@AllowSSO", settings.AllowSSO);  
                 cmd.Parameters.AddWithValue("@Language", settings.Language);
                 cmd.Parameters.AddWithValue("@UserID", settings.UserID);
 
@@ -67,7 +67,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Add settings for a new user
+        // Adds settings for a new user
         public async Task<bool> AddSettings(Settings settings)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -78,7 +78,7 @@ namespace SmartSpend_API.Services
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@UserID", settings.UserID);
                 cmd.Parameters.AddWithValue("@AllowNotifications", settings.AllowNotifications);
-                cmd.Parameters.AddWithValue("@AllowSSO", settings.AllowSSO);  // Inserting AllowSSO
+                cmd.Parameters.AddWithValue("@AllowSSO", settings.AllowSSO);  
                 cmd.Parameters.AddWithValue("@Language", settings.Language);
 
                 conn.Open();
@@ -88,7 +88,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Delete settings for a user
+        // Deletes settings for a user
         public async Task<bool> DeleteSettings(int userID)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))

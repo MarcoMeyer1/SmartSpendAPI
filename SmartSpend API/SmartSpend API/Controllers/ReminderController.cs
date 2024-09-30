@@ -17,7 +17,7 @@ namespace SmartSpend_API.Controllers
             _reminderRepository = reminderRepository;
         }
 
-        // Create a new reminder
+        // Creates a new reminder
         [HttpPost("create")]
         public async Task<IActionResult> CreateReminder([FromBody] Reminder reminder)
         {
@@ -29,7 +29,7 @@ namespace SmartSpend_API.Controllers
             return Ok("Reminder created successfully.");
         }
 
-        // Get reminders for a user
+        // Gets reminders for a user
         [HttpGet("{userID}")]
         public async Task<IActionResult> GetReminders(int userID)
         {
@@ -41,7 +41,7 @@ namespace SmartSpend_API.Controllers
             return Ok(reminders);
         }
 
-        // Update a reminder
+        // Updates a reminder
         [HttpPut("update")]
         public async Task<IActionResult> UpdateReminder([FromBody] Reminder reminder)
         {
@@ -53,7 +53,7 @@ namespace SmartSpend_API.Controllers
             return Ok("Reminder updated successfully.");
         }
 
-        // Delete a reminder
+        // Deletes a reminder
         [HttpDelete("delete/{reminderID}")]
         public async Task<IActionResult> DeleteReminder(int reminderID)
         {

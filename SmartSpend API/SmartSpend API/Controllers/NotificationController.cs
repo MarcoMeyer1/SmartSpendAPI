@@ -17,7 +17,7 @@ namespace SmartSpend_API.Controllers
             _notificationRepository = notificationRepository;
         }
 
-        // Create a new notification
+        // Creates a new notification
         [HttpPost("create")]
         public async Task<IActionResult> CreateNotification([FromBody] Notification notification)
         {
@@ -29,7 +29,7 @@ namespace SmartSpend_API.Controllers
             return Ok("Notification created successfully.");
         }
 
-        // Get notifications for a user
+        // Gets notifications for a user
         [HttpGet("{userID}")]
         public async Task<IActionResult> GetNotifications(int userID)
         {
@@ -41,7 +41,7 @@ namespace SmartSpend_API.Controllers
             return Ok(notifications);
         }
 
-        // Update a notification
+        // Updates a notification
         [HttpPut("update")]
         public async Task<IActionResult> UpdateNotification([FromBody] Notification notification)
         {
@@ -53,7 +53,7 @@ namespace SmartSpend_API.Controllers
             return Ok("Notification updated successfully.");
         }
 
-        // Delete a notification
+        // Deletes a notification
         [HttpDelete("delete/{notificationID}")]
         public async Task<IActionResult> DeleteNotification(int notificationID)
         {

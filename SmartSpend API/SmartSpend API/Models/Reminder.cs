@@ -8,6 +8,6 @@
         public DateTime DateDue { get; set; }
         public DateTime? NotificationDate { get; set; }
         public bool IsEnabled { get; set; }
-        public bool IsCompleted { get; set; } // Added IsCompleted field
+        public bool IsCompleted { get; set; } 
     }
 }

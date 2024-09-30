@@ -15,7 +15,7 @@ namespace SmartSpend_API.Services
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        // Create a new reminder
+        // Creates a new reminder
         public async Task<bool> CreateReminder(Reminder reminder)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -38,7 +38,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Get reminders for a specific user
+        // Gets reminders for a specific user
         public async Task<List<Reminder>> GetRemindersByUserID(int userID)
         {
             List<Reminder> reminders = new List<Reminder>();
@@ -71,7 +71,7 @@ namespace SmartSpend_API.Services
             return reminders;
         }
 
-        // Update reminder
+        // Updates reminder
         public async Task<bool> UpdateReminder(Reminder reminder)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -96,7 +96,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Delete a reminder
+        // Deletes a reminder
         public async Task<bool> DeleteReminder(int reminderID)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))

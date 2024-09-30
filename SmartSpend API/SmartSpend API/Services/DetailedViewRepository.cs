@@ -15,7 +15,7 @@ namespace SmartSpend_API.Services
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        // Create a new detailed view
+        // Creates a new detailed view
         public async Task<bool> CreateDetailedView(DetailedView detailedView)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -37,7 +37,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Get detailed view for a specific user and category
+        // Gets detailed view for a specific user and category
         public async Task<List<DetailedView>> GetDetailedViewsByUserID(int userID)
         {
             List<DetailedView> detailedViews = new List<DetailedView>();
@@ -69,7 +69,7 @@ namespace SmartSpend_API.Services
             return detailedViews;
         }
 
-        // Update a detailed view
+        // Updates a detailed view
         public async Task<bool> UpdateDetailedView(DetailedView detailedView)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -91,7 +91,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Delete a detailed view
+        // Deletes a detailed view
         public async Task<bool> DeleteDetailedView(int detailedViewID)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))

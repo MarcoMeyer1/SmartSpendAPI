@@ -17,7 +17,7 @@ namespace SmartSpend_API.Controllers
             _incomeRepository = incomeRepository;
         }
 
-        // Create a new income entry
+        // Creates a new income entry
         [HttpPost("create")]
         public async Task<IActionResult> CreateIncome([FromBody] Income income)
         {
@@ -34,7 +34,7 @@ namespace SmartSpend_API.Controllers
             return Ok("Income created successfully.");
         }
 
-        // Get income entries for a user
+        // Gets income entries for a user
         [HttpGet("{userID}")]
         public async Task<IActionResult> GetIncome(int userID)
         {
@@ -46,7 +46,7 @@ namespace SmartSpend_API.Controllers
             return Ok(incomeList);
         }
 
-        // Update an income entry
+        // Updates an income entry
         [HttpPut("update")]
         public async Task<IActionResult> UpdateIncome([FromBody] Income income)
         {
@@ -58,7 +58,7 @@ namespace SmartSpend_API.Controllers
             return Ok("Income updated successfully.");
         }
 
-        // Delete an income entry
+        // Deletes an income entry
         [HttpDelete("delete/{incomeID}")]
         public async Task<IActionResult> DeleteIncome(int incomeID)
         {

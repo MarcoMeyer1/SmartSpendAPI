@@ -16,7 +16,7 @@ namespace SmartSpend_API.Controllers
             _settingsRepository = settingsRepository;
         }
 
-        // Get settings for a specific user
+        // Gets settings for a specific user
         [HttpGet("{userID}")]
         public async Task<IActionResult> GetSettings(int userID)
         {
@@ -28,7 +28,7 @@ namespace SmartSpend_API.Controllers
             return Ok(settings);
         }
 
-        // Update settings
+        // Updates settings
         [HttpPut("update")]
         public async Task<IActionResult> UpdateSettings([FromBody] Settings settings)
         {
@@ -40,7 +40,7 @@ namespace SmartSpend_API.Controllers
             return Ok("Settings updated successfully.");
         }
 
-        // Add settings for a new user
+        // Adds settings for a new user
         [HttpPost("add")]
         public async Task<IActionResult> AddSettings([FromBody] Settings settings)
         {
@@ -52,7 +52,7 @@ namespace SmartSpend_API.Controllers
             return Ok("Settings created successfully.");
         }
 
-        // Delete settings for a user
+        // Deletes settings for a user
         [HttpDelete("delete/{userID}")]
         public async Task<IActionResult> DeleteSettings(int userID)
         {

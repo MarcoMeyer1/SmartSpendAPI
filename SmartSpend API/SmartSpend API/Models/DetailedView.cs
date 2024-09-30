@@ -7,6 +7,6 @@
         public int CategoryID { get; set; }
         public decimal TotalExpense { get; set; }
         public decimal TotalIncome { get; set; }
-        public string MonthYear { get; set; }  // E.g., "August 2024"
+        public string MonthYear { get; set; }  
     }
 }

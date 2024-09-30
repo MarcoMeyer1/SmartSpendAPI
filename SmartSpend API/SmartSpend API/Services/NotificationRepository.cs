@@ -15,7 +15,7 @@ namespace SmartSpend_API.Services
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        // Create a new notification
+        // Creates a new notification
         public async Task<bool> CreateNotification(Notification notification)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -35,7 +35,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Get notifications for a specific user
+        // Gets notifications for a specific user
         public async Task<List<Notification>> GetNotificationsByUserID(int userID)
         {
             List<Notification> notifications = new List<Notification>();
@@ -65,7 +65,7 @@ namespace SmartSpend_API.Services
             return notifications;
         }
 
-        // Update notification
+        // Updates notification
         public async Task<bool> UpdateNotification(Notification notification)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -86,7 +86,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Delete a notification
+        // Deletes a notification
         public async Task<bool> DeleteNotification(int notificationID)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))

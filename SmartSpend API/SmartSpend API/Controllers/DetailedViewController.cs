@@ -17,7 +17,7 @@ namespace SmartSpend_API.Controllers
             _detailedViewRepository = detailedViewRepository;
         }
 
-        // Create a new detailed view
+        // Creates a new detailed view
         [HttpPost("create")]
         public async Task<IActionResult> CreateDetailedView([FromBody] DetailedView detailedView)
         {
@@ -29,7 +29,7 @@ namespace SmartSpend_API.Controllers
             return Ok("Detailed view created successfully.");
         }
 
-        // Get detailed views for a user
+        // Gets detailed views for a user
         [HttpGet("{userID}")]
         public async Task<IActionResult> GetDetailedViews(int userID)
         {
@@ -41,7 +41,7 @@ namespace SmartSpend_API.Controllers
             return Ok(detailedViews);
         }
 
-        // Update a detailed view
+        // Updates a detailed view
         [HttpPut("update")]
         public async Task<IActionResult> UpdateDetailedView([FromBody] DetailedView detailedView)
         {
@@ -53,7 +53,7 @@ namespace SmartSpend_API.Controllers
             return Ok("Detailed view updated successfully.");
         }
 
-        // Delete a detailed view
+        // Deletes a detailed view
         [HttpDelete("delete/{detailedViewID}")]
         public async Task<IActionResult> DeleteDetailedView(int detailedViewID)
         {

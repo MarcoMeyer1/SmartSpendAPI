@@ -1,11 +1,11 @@
--- User Table with Salt Column
+-- User Table 
 CREATE TABLE Users (
     UserID INT IDENTITY(1,1) PRIMARY KEY,
     FirstName NVARCHAR(100) NOT NULL,
     Surname NVARCHAR(100) NOT NULL,
     Email NVARCHAR(255) UNIQUE NOT NULL,
-    PasswordHash NVARCHAR(255) NOT NULL, -- This stores the hashed password
-    PasswordSalt NVARCHAR(255) NOT NULL, -- This stores the salt for hashing
+    PasswordHash NVARCHAR(255) NOT NULL, 
+    PasswordSalt NVARCHAR(255) NOT NULL, 
     PhoneNumber NVARCHAR(15),
     DateRegistered DATETIME DEFAULT GETDATE()
 );
@@ -50,13 +50,13 @@ CREATE TABLE Goals (
     CompletionDate DATETIME NULL
 );
 
--- Category Table with ColorCode and UserID
+-- Category Table 
 CREATE TABLE dbo.Categories (
-    CategoryID INT PRIMARY KEY NOT NULL,   -- Primary key for the categories
-    CategoryName NVARCHAR(255) NOT NULL,   -- Category name (e.g., Groceries, Rent)
-    ColorCode NVARCHAR(7) NOT NULL,        -- Color code for UI representation (e.g., #FFFFFF)
-    UserID INT NOT NULL,                   -- Reference to the user who created the category
-    maxBudget DECIMAL(18, 2) NOT NULL      -- Max budget for the category
+    CategoryID INT PRIMARY KEY NOT NULL,   
+    CategoryName NVARCHAR(255) NOT NULL,  
+    ColorCode NVARCHAR(7) NOT NULL,       
+    UserID INT NOT NULL,                   
+    maxBudget DECIMAL(18, 2) NOT NULL      
 );
 
 -- Notifications Table
@@ -76,12 +76,12 @@ CREATE TABLE Settings (
     Language NVARCHAR(50) DEFAULT 'English'
 );
 
--- Detailed View Table (for managing category expenses and income)
+-- Detailed View Table 
 CREATE TABLE DetailedView (
     DetailedViewID INT IDENTITY(1,1) PRIMARY KEY,
     UserID INT FOREIGN KEY REFERENCES Users(UserID),
     CategoryID INT FOREIGN KEY REFERENCES Categories(CategoryID),
     TotalExpense DECIMAL(18, 2),
     TotalIncome DECIMAL(18, 2),
-    MonthYear NVARCHAR(20) NOT NULL -- E.g., "August 2024"
+    MonthYear NVARCHAR(20) NOT NULL 
 );

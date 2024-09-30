@@ -17,7 +17,7 @@ namespace SmartSpend_API.Controllers
             _goalRepository = goalRepository;
         }
 
-        // Create a new goal
+        // Creates a new goal
         [HttpPost("create")]
         public async Task<IActionResult> CreateGoal([FromBody] Goal goal)
         {
@@ -29,7 +29,7 @@ namespace SmartSpend_API.Controllers
             return Ok("Goal created successfully.");
         }
 
-        // Get goals for a user
+        // Gets goals for a user
         [HttpGet("{userID}")]
         public async Task<IActionResult> GetGoals(int userID)
         {
@@ -41,7 +41,7 @@ namespace SmartSpend_API.Controllers
             return Ok(goals);
         }
 
-        // Update a goal
+        // Updates a goal
         [HttpPut("update")]
         public async Task<IActionResult> UpdateGoal([FromBody] Goal goal)
         {
@@ -53,7 +53,7 @@ namespace SmartSpend_API.Controllers
             return Ok("Goal updated successfully.");
         }
 
-        // Delete a goal
+        // Deletes a goal
         [HttpDelete("delete/{goalID}")]
         public async Task<IActionResult> DeleteGoal(int goalID)
         {

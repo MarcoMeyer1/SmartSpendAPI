@@ -17,7 +17,7 @@ namespace SmartSpend_API.Controllers
             _expenseRepository = expenseRepository;
         }
 
-        // Create a new expense
+        // Creates a new expense
         [HttpPost("create")]
         public async Task<IActionResult> CreateExpense([FromBody] Expense expense)
         {
@@ -29,7 +29,7 @@ namespace SmartSpend_API.Controllers
             return Ok("Expense created successfully.");
         }
 
-        // Get expenses for a user
+        // Gets expenses for a user
         [HttpGet("{userID}")]
         public async Task<IActionResult> GetExpenses(int userID)
         {
@@ -41,7 +41,7 @@ namespace SmartSpend_API.Controllers
             return Ok(expenses);
         }
 
-        // Get expenses by category ID and user ID
+        // Gets the expenses by category ID and user ID
         [HttpGet("category/{userID}/{categoryID}")]
         public async Task<IActionResult> GetExpensesByCategory(int userID, int categoryID)
         {
@@ -53,7 +53,7 @@ namespace SmartSpend_API.Controllers
             return Ok(expenses);
         }
 
-        // Update an expense
+        // Updates an expense
         [HttpPut("update")]
         public async Task<IActionResult> UpdateExpense([FromBody] Expense expense)
         {
@@ -65,7 +65,7 @@ namespace SmartSpend_API.Controllers
             return Ok("Expense updated successfully.");
         }
 
-        // Delete an expense
+        // Deletes an expense
         [HttpDelete("delete/{expenseID}")]
         public async Task<IActionResult> DeleteExpense(int expenseID)
         {
@@ -76,7 +76,7 @@ namespace SmartSpend_API.Controllers
             }
             return Ok("Expense deleted successfully.");
         }
-        // Get total expenses per category for a user
+        // Gets total expenses per category for a user
         [HttpGet("totals/user/{userID}")]
         public async Task<IActionResult> GetTotalExpensesPerCategoryForUser(int userID)
         {

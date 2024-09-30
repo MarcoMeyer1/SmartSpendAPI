@@ -17,7 +17,7 @@ namespace SmartSpend_API.Controllers
             _categoryRepository = categoryRepository;
         }
 
-        // Create a new category
+        // Creates a new category
         [HttpPost("create")]
         public async Task<IActionResult> CreateCategory([FromBody] Category category)
         {
@@ -29,7 +29,7 @@ namespace SmartSpend_API.Controllers
             return Ok("Category created successfully.");
         }
 
-        // Get categories by userID
+        // Gets the categories by userID
         [HttpGet("user/{userID}")]
         public async Task<IActionResult> GetCategoriesByUserID(int userID)
         {
@@ -41,7 +41,7 @@ namespace SmartSpend_API.Controllers
             return Ok(categories);
         }
 
-        // Get all categories
+        // Gets all categories
         [HttpGet("all")]
         public async Task<IActionResult> GetCategories()
         {
@@ -53,7 +53,7 @@ namespace SmartSpend_API.Controllers
             return Ok(categories);
         }
 
-        // Update a category
+        // Updates a category
         [HttpPut("update")]
         public async Task<IActionResult> UpdateCategory([FromBody] Category category)
         {
@@ -65,7 +65,7 @@ namespace SmartSpend_API.Controllers
             return Ok("Category updated successfully.");
         }
 
-        // Delete a category
+        // Deletes a category
         [HttpDelete("delete/{categoryID}")]
         public async Task<IActionResult> DeleteCategory(int categoryID)
         {
@@ -77,7 +77,7 @@ namespace SmartSpend_API.Controllers
             return Ok("Category deleted successfully.");
         }
 
-        // Get category by ID
+        // Gets the category by ID
         [HttpGet("{categoryID}")]
         public async Task<IActionResult> GetCategoryByID(int categoryID)
         {

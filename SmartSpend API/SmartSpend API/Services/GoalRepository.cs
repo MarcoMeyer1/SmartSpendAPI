@@ -16,7 +16,7 @@ namespace SmartSpend_API.Services
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        // Create a new goal
+        // Creates a new goal
         public async Task<bool> CreateGoal(Goal goal)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -38,7 +38,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Get goals for a specific user
+        // Gets goals for a specific user
         public async Task<List<Goal>> GetGoalsByUserID(int userID)
         {
             List<Goal> goals = new List<Goal>();
@@ -70,7 +70,7 @@ namespace SmartSpend_API.Services
             return goals;
         }
 
-        // Update goal progress
+        // Updates goal progress
         public async Task<bool> UpdateGoal(Goal goal)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -94,7 +94,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Delete a goal
+        // Deletes a goal
         public async Task<bool> DeleteGoal(int goalID)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))

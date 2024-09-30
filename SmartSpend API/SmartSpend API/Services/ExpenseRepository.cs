@@ -16,7 +16,7 @@ namespace SmartSpend_API.Services
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        // Create a new expense
+        // Creates a new expense
         public async Task<bool> CreateExpense(Expense expense)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -38,7 +38,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Get expenses for a specific user
+        // Gets expenses for a specific user
         public async Task<List<Expense>> GetExpensesByUserID(int userID)
         {
             List<Expense> expenses = new List<Expense>();
@@ -70,7 +70,7 @@ namespace SmartSpend_API.Services
             return expenses;
         }
 
-        // Get expenses by category ID and user ID
+        // Gets expenses by category ID and user ID
         public async Task<List<Expense>> GetExpensesByCategoryIDAndUserID(int categoryID, int userID)
         {
             List<Expense> expenses = new List<Expense>();
@@ -103,7 +103,7 @@ namespace SmartSpend_API.Services
             return expenses;
         }
 
-        // Update an expense
+        // Updates an expense
         public async Task<bool> UpdateExpense(Expense expense)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -127,7 +127,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Delete an expense
+        // Deletes an expense
         public async Task<bool> DeleteExpense(int expenseID)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -143,7 +143,7 @@ namespace SmartSpend_API.Services
             }
         }
 
-        // Get total expenses per category for a user
+        // Gets total expenses per category for a user
         public async Task<List<CategoryExpenseTotal>> GetTotalExpensesPerCategoryForUser(int userID)
         {
             List<CategoryExpenseTotal> categoryTotals = new List<CategoryExpenseTotal>();
