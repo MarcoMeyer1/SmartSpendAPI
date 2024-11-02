@@ -64,5 +64,17 @@ namespace SmartSpend_API.Controllers
             }
             return Ok("Goal deleted successfully.");
         }
+
+        // Gets a goal by its ID
+        [HttpGet("GetGoal/{goalID}")]
+        public async Task<IActionResult> GetGoal(int goalID)
+        {
+            Goal goal = await _goalRepository.GetGoalByID(goalID);
+            if (goal == null)
+            {
+                return NotFound("Goal not found.");
+            }
+            return Ok(goal);
+        }
     }
 }

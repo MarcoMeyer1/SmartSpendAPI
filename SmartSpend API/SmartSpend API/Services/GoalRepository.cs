@@ -109,5 +109,40 @@ namespace SmartSpend_API.Services
                 return result > 0;
             }
         }
+
+
+        public async Task<Goal> GetGoalByID(int goalID)
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Goals WHERE GoalID = @GoalID";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@GoalID", goalID);
+
+                conn.Open();
+                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                {
+                    if (reader.Read())
+                    {
+                        Goal goal = new Goal
+                        {
+                            GoalID = (int)reader["GoalID"],
+                            UserID = (int)reader["UserID"],
+                            GoalName = reader["GoalName"].ToString(),
+                            TotalAmount = (decimal)reader["TotalAmount"],
+                            SavedAmount = (decimal)reader["SavedAmount"],
+                            CompletionDate = reader["CompletionDate"] as DateTime?
+                        };
+                        return goal;
+                    }
+                }
+                conn.Close();
+            }
+            return null;
+        }
+
     }
+
+   
+
 }
